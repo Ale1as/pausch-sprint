@@ -21,6 +21,11 @@ public class mainMenu : MonoBehaviour
         Application.Quit();
     }
 
+    public void play()
+    {
+        SceneManager.LoadScene(1);
+    }
+
     public void SettingsMenu()
     {
         mainBackground.SetActive(false);
