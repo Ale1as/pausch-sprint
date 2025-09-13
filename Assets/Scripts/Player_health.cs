@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 public class Player_health : MonoBehaviour
 {
     public float total_playerHealth;
@@ -10,6 +11,7 @@ public class Player_health : MonoBehaviour
     void Start()
     {
         TriggerDialogue();
+        deathUI.GetComponentInChildren<TextMeshProUGUI>().alpha = 0;
     }
 
 
@@ -32,10 +34,19 @@ public class Player_health : MonoBehaviour
 
         if (current_playerHealth <= 0)
         {
+            PlayDeathUI();
             FindAnyObjectByType<Movement>().enabled = false;
-            FindAnyObjectByType<drawLine>().enabled = false;
+            FindAnyObjectByType<Shooting>().enabled = false;
+            FindAnyObjectByType<Duality>().enabled = false;
+            FindAnyObjectByType<FPScamera>().enabled = false;
             current_playerHealth = 0;
-            deathUI.SetActive(true);
+
         }
+    }
+
+    void PlayDeathUI()
+    {
+        deathUI.SetActive(true);
+        deathUI.GetComponentInChildren<TextMeshProUGUI>().alpha += 0.5f * Time.deltaTime;
     }
 }
