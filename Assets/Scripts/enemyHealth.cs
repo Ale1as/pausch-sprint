@@ -7,6 +7,7 @@ public class enemyHealth : MonoBehaviour
     public SmoothShake cameraShake;
     public ParticleSystem blood;
     public Healthorb healthorb;
+    public GameObject shooterGameObject;
     public float Health;
 
     // Update is called once per frame
@@ -23,6 +24,7 @@ public class enemyHealth : MonoBehaviour
             blood.Play();
             cameraShake.StartShake();
             Destroy(gameObject);
+            Destroy(shooterGameObject);
             FindAnyObjectByType<Player_health>().killCount += 1;
         }
 

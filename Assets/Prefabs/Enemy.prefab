@@ -31,6 +31,7 @@ Transform:
   m_Children:
   - {fileID: 902512474131842831}
   - {fileID: 5042858952541688031}
+  - {fileID: 445327491710967612}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4886732331150430269
@@ -176,6 +177,7 @@ MonoBehaviour:
   cameraShake: {fileID: 0}
   blood: {fileID: 5672599888093711523}
   healthorb: {fileID: 6360260412891425831, guid: 6e9e65ad7fc570d4a864b830f4b2e9a9, type: 3}
+  shooterGameObject: {fileID: 6019028143262617083}
   Health: 2
 --- !u!54 &741620690017717474
 Rigidbody:
@@ -204,6 +206,54 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!1 &6019028143262617083
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 445327491710967612}
+  - component: {fileID: 9176833744649239294}
+  m_Layer: 0
+  m_Name: shooter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &445327491710967612
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6019028143262617083}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3577935186962726896}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9176833744649239294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6019028143262617083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18cad37818b564f4694434d7658a2aab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectilePrefab: {fileID: 5254460644482178955, guid: 017ebbf222f609141a296ba2733df710, type: 3}
+  target: {fileID: 0}
+  fireCooldown: 1
+  maxSightDistance: 20
 --- !u!1 &6542142304942692383
 GameObject:
   m_ObjectHideFlags: 0
