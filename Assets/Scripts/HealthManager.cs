@@ -5,6 +5,7 @@ using TMPro;
 public class HealthManager : MonoBehaviour
 {
     public Image healthUI;
+    public Image bloodUI;
     private Player_health Health;
     public TextMeshProUGUI fpsText;
 
@@ -36,5 +37,30 @@ public class HealthManager : MonoBehaviour
 
         // Smoothly interpolate instead of forcing every frame
         healthUI.fillAmount = Mathf.Lerp(healthUI.fillAmount, targetFill, Time.deltaTime * smoothSpeed);
+
+        // Base alpha depending on health
+        float targetAlpha = 1 - healthUI.fillAmount;
+
+        // If Duality is switched, fade alpha to 0 much faster
+        if (FindAnyObjectByType<Duality>().switched)
+        {
+            targetAlpha = 0f;
+            bloodUI.color = new Color(
+                bloodUI.color.r,
+                bloodUI.color.g,
+                bloodUI.color.b,
+                Mathf.Lerp(bloodUI.color.a, targetAlpha, Time.deltaTime * (smoothSpeed * 2f)) // multiplier makes it snappier
+            );
+        }
+        else
+        {
+            // Normal behavior
+            bloodUI.color = new Color(
+                bloodUI.color.r,
+                bloodUI.color.g,
+                bloodUI.color.b,
+                Mathf.Lerp(bloodUI.color.a, targetAlpha, Time.deltaTime * smoothSpeed)
+            );
+        }
     }
 }

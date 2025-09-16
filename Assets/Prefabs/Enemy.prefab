@@ -175,6 +175,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraShake: {fileID: 0}
   blood: {fileID: 5672599888093711523}
+  healthorb: {fileID: 6360260412891425831, guid: 6e9e65ad7fc570d4a864b830f4b2e9a9, type: 3}
   Health: 2
 --- !u!54 &741620690017717474
 Rigidbody:

@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Experimental.GlobalIllumination;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PauseManager : MonoBehaviour
@@ -7,6 +8,7 @@ public class PauseManager : MonoBehaviour
     public GameObject pauseMenu;
     public Slider sensSlider;
     private float sensValue;
+    public Image bloodUI;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -19,6 +21,7 @@ public class PauseManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             pauseMenu.SetActive(true);
+            bloodUI.enabled = false;
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
             Time.timeScale = 0;
@@ -32,6 +35,7 @@ public class PauseManager : MonoBehaviour
     public void ResumeButton()
     {
         pauseMenu.SetActive(false);
+        bloodUI.enabled = false;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         Time.timeScale = 1;
@@ -40,5 +44,10 @@ public class PauseManager : MonoBehaviour
     public void QuitButton()
     {
         Application.Quit();
+    }
+
+    public void RestartButton()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

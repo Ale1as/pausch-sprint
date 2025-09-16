@@ -6,20 +6,22 @@ public class Player_health : MonoBehaviour
     public float total_playerHealth;
     public float current_playerHealth;
     public GameObject deathUI;
+    public int killCount;
+    bool isHealed;
     public Dialoguedata dialogue; // assign in inspector
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        killCount = 0;
         TriggerDialogue();
         deathUI.GetComponentInChildren<TextMeshProUGUI>().alpha = 0;
     }
-
-
 
     public void TriggerDialogue()
     {
         FindAnyObjectByType<DialogueSystem>().StartDialogue(dialogue);
     }
+
     // Update is called once per frame
     void Update()
     {
@@ -40,7 +42,6 @@ public class Player_health : MonoBehaviour
             FindAnyObjectByType<Duality>().enabled = false;
             FindAnyObjectByType<FPScamera>().enabled = false;
             current_playerHealth = 0;
-
         }
     }
 

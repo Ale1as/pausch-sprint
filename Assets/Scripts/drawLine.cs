@@ -22,6 +22,8 @@ public class drawLine : MonoBehaviour
             // Set positions of the line
             lineRenderer.SetPosition(0, pointA.position);
             lineRenderer.SetPosition(1, pointB);
+            lineRenderer.textureMode = LineTextureMode.Tile;
+            lineRenderer.material.mainTextureScale = new Vector2(1f, 1f); // Adjust X to control repetition
         }
     }
 }
