@@ -10,6 +10,8 @@ public class Shooting : MonoBehaviour
     [SerializeField] private GameObject Player;
     [SerializeField] private GameObject soulSnatcher;
 
+    public bool startSpawn = false;
+
     public Duality dualScript;
 
     public bool haskey = false;
@@ -19,7 +21,7 @@ public class Shooting : MonoBehaviour
         if (cam == null) cam = Camera.main;
         if (cam == null) Debug.LogWarning("MouseRaycastShooter: No Camera assigned and no Camera.main found.");
     }
-    void Update()
+    void Start()
     {
 
     }
@@ -59,7 +61,7 @@ public class Shooting : MonoBehaviour
                     soulSnatcher.GetComponent<drawLine>().soulLine(hit.point);
                 }
 
-                if (hit.collider.gameObject.name == "key")
+                if (hit.collider.gameObject.tag == "key")
                 {
                     haskey = true;
                     FindAnyObjectByType<FoundKey>().TriggerDialogue();
@@ -77,6 +79,12 @@ public class Shooting : MonoBehaviour
                     FindAnyObjectByType<Camera>().GetComponent<FPScamera>().enabled = false;
                     Player.transform.eulerAngles = new Vector3(0, 0, 0);
                     FindAnyObjectByType<StartExorcism>().TriggerDialogue();
+                }
+                if (hit.collider.gameObject.name == "DemonsArise")
+                {
+                    FindAnyObjectByType<DemonArise>().TriggerDialogue();
+                    startSpawn = true;
+                    Destroy(hit.collider.gameObject);
                 }
             }
             else

@@ -8,19 +8,22 @@ public class Duality : MonoBehaviour
     [SerializeField] GameObject demonHand;
     [SerializeField] GameObject priestHand;
 
+    [SerializeField] float healthInc;
+    [SerializeField] float healthDec;
+
     // Update is called once per frame
     void Update()
     {
 
         if (switched)
         {
-            gameObject.GetComponent<Player_health>().current_playerHealth += 2f * Time.deltaTime;
+            gameObject.GetComponent<Player_health>().current_playerHealth += healthInc * Time.deltaTime;
             priestHand.SetActive(true);
             demonHand.SetActive(false);
         }
         else if (!switched)
         {
-            gameObject.GetComponent<Player_health>().current_playerHealth -= 5f * Time.deltaTime;
+            gameObject.GetComponent<Player_health>().current_playerHealth -= healthDec * Time.deltaTime;
             demonHand.SetActive(true);
             priestHand.SetActive(false);
         }

@@ -8,30 +8,38 @@ public class Spawner : MonoBehaviour
 
     [Header("Spawn Settings")]
     public float spawnInterval = 3f;       // Time between spawns
-
     private float spawnTimer = 0f;
     private int currentEnemyCount = 0;
 
+    private Shooting shooting;
+    void Start()
+    {
+        shooting = FindAnyObjectByType<Shooting>();
+    }
     void Update()
     {
-        // Count down
-        spawnTimer -= Time.deltaTime;
-
-        // Spawn when timer hits zero
-        if (spawnTimer <= 0f)
+        if (shooting != null && shooting.startSpawn)
         {
-            if (maxEnemies == -1 || currentEnemyCount < maxEnemies)
+            // Count down
+            spawnTimer -= Time.deltaTime;
+
+            // Spawn when timer hits zero
+            if (spawnTimer <= 0f)
             {
-                SpawnEnemy();
+                if (maxEnemies == -1 || currentEnemyCount < maxEnemies)
+                {
+                    SpawnEnemy();
+                }
+                spawnTimer = spawnInterval;
             }
-            spawnTimer = spawnInterval;
         }
+
     }
 
     void SpawnEnemy()
     {
         // Spawn enemy
-        GameObject enemy = Instantiate(enemyPrefab, new Vector3(gameObject.transform.position.x,1f,gameObject.transform.position.z + 2f), gameObject.transform.rotation);
+        GameObject enemy = Instantiate(enemyPrefab, new Vector3(gameObject.transform.position.x, 1f, gameObject.transform.position.z + 2f), gameObject.transform.rotation);
 
         currentEnemyCount++;
     }
