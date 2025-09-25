@@ -25,10 +25,7 @@ public class Player_health : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        }
+
         if (current_playerHealth > total_playerHealth)
         {
             current_playerHealth = total_playerHealth;
@@ -36,6 +33,10 @@ public class Player_health : MonoBehaviour
 
         if (current_playerHealth <= 0)
         {
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            }
             PlayDeathUI();
             FindAnyObjectByType<Movement>().enabled = false;
             FindAnyObjectByType<Shooting>().enabled = false;
